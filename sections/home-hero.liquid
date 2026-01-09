@@ -1,0 +1,161 @@
+<section class="pt-32 pb-16">
+  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6 fade-up">
+      <span class="inline-flex items-center gap-2 rounded-full bg-pink-50 px-4 py-2 text-sm text-purple-700">
+        {{ section.settings.badge_text }}
+      </span>
+      <h1 class="text-4xl lg:text-5xl font-bold leading-tight">
+        {{ section.settings.heading | replace: '<p>', '' | replace: '</p>', '' }}
+      </h1>
+      <p class="text-lg text-slate-600">
+        {{ section.settings.subheading }}
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="{{ section.settings.primary_link }}"
+          class="rounded-full bg-gradient-to-r from-pink-400 to-purple-500 px-6 py-3 text-white font-semibold shadow-lg"
+        >
+          {{ section.settings.primary_label }}
+        </a>
+        <a
+          href="{{ section.settings.secondary_link }}"
+          class="rounded-full border border-purple-200 px-6 py-3 font-semibold text-purple-700"
+        >
+          {{ section.settings.secondary_label }}
+        </a>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500">
+        {% for block in section.blocks %}
+          <div>
+            <p class="font-semibold text-slate-900">{{ block.settings.title }}</p>
+            <p>{{ block.settings.subtitle }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="relative flex justify-center">
+      <div class="absolute inset-0 bg-gradient-to-br from-pink-100 via-white to-purple-100 rounded-[40px]"></div>
+      <div class="relative z-10 p-10">
+        <div class="floating rounded-[40px] bg-white/80 shadow-2xl p-10 text-center">
+          <p class="text-sm uppercase tracking-[0.3em] text-purple-600">{{ section.settings.product_tagline }}</p>
+          <h2 class="text-3xl font-bold gradient-text mt-4">{{ section.settings.product_name }}</h2>
+          <p class="text-slate-500 mt-4">{{ section.settings.product_description }}</p>
+          <div class="mt-6 flex flex-wrap justify-center gap-4">
+            <span class="rounded-full bg-pink-100 px-4 py-2 text-sm text-purple-700">{{ section.settings.product_badge_one }}</span>
+            <span class="rounded-full bg-purple-100 px-4 py-2 text-sm text-purple-700">{{ section.settings.product_badge_two }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge",
+      "default": "Studio pilates premium à domicile"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Votre <span class='gradient-text'>reformer OnePilates</span> pour un corps aligné et une posture élégante."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Transformez chaque séance en rituel bien-être. Un design sculptural, une résistance fluide et un coaching guidé pour progresser en douceur."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Label bouton principal",
+      "default": "Découvrir le reformer"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Lien bouton principal",
+      "default": "/products/reformer-360"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Label bouton secondaire",
+      "default": "Commander maintenant"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Lien bouton secondaire",
+      "default": "/checkout"
+    },
+    {
+      "type": "text",
+      "id": "product_tagline",
+      "label": "Tagline produit",
+      "default": "Reformer Signature"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Nom produit",
+      "default": "OnePilates 360"
+    },
+    {
+      "type": "textarea",
+      "id": "product_description",
+      "label": "Description produit",
+      "default": "Structure en bois clair, barres chromées et résistance silencieuse."
+    },
+    {
+      "type": "text",
+      "id": "product_badge_one",
+      "label": "Badge produit 1",
+      "default": "Coaching vidéo inclus"
+    },
+    {
+      "type": "text",
+      "id": "product_badge_two",
+      "label": "Badge produit 2",
+      "default": "Garantie 5 ans"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Livraison 48h"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sous-titre",
+          "default": "Suivi premium"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat", "settings": { "title": "Retour 30 jours", "subtitle": "Sans stress" } },
+        { "type": "stat", "settings": { "title": "Paiement 3x", "subtitle": "0% intérêts" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

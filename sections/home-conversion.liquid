@@ -1,0 +1,112 @@
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+    <div class="space-y-4">
+      <h2 class="text-3xl font-bold gradient-text">{{ section.settings.title }}</h2>
+      <ul class="space-y-4 text-slate-600">
+        {% for block in section.blocks %}
+          {% if block.type == 'bullet' %}
+            <li class="flex gap-3">
+              <span class="mt-1 h-3 w-3 rounded-full bg-pink-400"></span>
+              {{ block.settings.text }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <a
+        href="{{ section.settings.cta_link }}"
+        class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-white font-semibold"
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+    <div class="rounded-[32px] border border-purple-100 p-8 shadow-xl">
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold">{{ section.settings.social_title }}</h3>
+        {% for block in section.blocks %}
+          {% if block.type == 'testimonial' %}
+            <div class="rounded-2xl bg-purple-50 p-5">
+              <p class="text-slate-600">{{ block.settings.quote }}</p>
+              <p class="mt-3 text-sm font-semibold text-purple-700">— {{ block.settings.author }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Conversion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Un parcours d'achat pensé pour convertir"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Label CTA",
+      "default": "Réserver mon reformer"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Lien CTA",
+      "default": "/checkout"
+    },
+    {
+      "type": "text",
+      "id": "social_title",
+      "label": "Titre témoignages",
+      "default": "Ce que nos clientes disent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Argument",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte",
+          "default": "Moins de clics : accédez directement à l'achat depuis chaque section clé."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Témoignage",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Citation",
+          "default": "“Le reformer est sublime, la livraison ultra rapide. Je sens déjà mes muscles profonds se renforcer.”"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Auteur",
+          "default": "Anaïs, Paris"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Conversion",
+      "blocks": [
+        { "type": "bullet" },
+        { "type": "bullet", "settings": { "text": "Argumentaire premium : bénéfices, preuves sociales et garantie rassurante." } },
+        { "type": "bullet", "settings": { "text": "SEO optimisé : titres clairs, mots-clés pilates, et structure hiérarchisée." } },
+        { "type": "testimonial" },
+        { "type": "testimonial", "settings": { "quote": "“OnePilates m'accompagne chaque semaine. Les vidéos et les réglages sont intuitifs.”", "author": "Léa, Lyon" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

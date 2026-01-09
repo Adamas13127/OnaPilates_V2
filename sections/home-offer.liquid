@@ -1,0 +1,101 @@
+<section class="py-16 bg-slate-900 text-white">
+  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-3 gap-8">
+    <div>
+      <h2 class="text-3xl font-bold gradient-text">{{ section.settings.title }}</h2>
+      <p class="mt-4 text-slate-200">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="rounded-3xl bg-white/10 p-6">
+      <h3 class="text-xl font-semibold">{{ section.settings.list_title }}</h3>
+      <ul class="mt-4 space-y-3 text-slate-200">
+        {% for block in section.blocks %}
+          <li>{{ block.settings.item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="rounded-3xl bg-white/10 p-6">
+      <h3 class="text-xl font-semibold">{{ section.settings.guarantee_title }}</h3>
+      <p class="mt-4 text-slate-200">{{ section.settings.guarantee_text }}</p>
+      <a
+        href="{{ section.settings.cta_link }}"
+        class="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink-400 to-purple-500 px-6 py-3 text-white font-semibold"
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Offre signature",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Offre signature"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Le pack complet pour une expérience pilates clé en main."
+    },
+    {
+      "type": "text",
+      "id": "list_title",
+      "label": "Titre liste",
+      "default": "Ce que vous recevez"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_title",
+      "label": "Titre garantie",
+      "default": "Garantie zen"
+    },
+    {
+      "type": "textarea",
+      "id": "guarantee_text",
+      "label": "Texte garantie",
+      "default": "30 jours d'essai, assistance 7j/7, paiements sécurisés et facilités."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Label CTA",
+      "default": "Je passe à l'action"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Lien CTA",
+      "default": "/checkout"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Élément",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Texte",
+          "default": "Reformer OnePilates 360"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offre signature",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item", "settings": { "item": "Accessoires premium & tapis" } },
+        { "type": "item", "settings": { "item": "Programme vidéo 12 semaines" } },
+        { "type": "item", "settings": { "item": "Livraison & installation offerte" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+{% if section.settings.show_announcement %}
+  <div class="bg-slate-900 text-white text-sm py-2">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-center">
+      <span class="pulse-dot pl-6">
+        {{ section.settings.announcement_text }}
+        <strong class="text-pink-400">{{ section.settings.announcement_code }}</strong>
+      </span>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Afficher la bande promo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Texte de la promo",
+      "default": "SOLDES !!! -30% AVEC LE CODE :"
+    },
+    {
+      "type": "text",
+      "id": "announcement_code",
+      "label": "Code promo",
+      "default": "BISOU30"
+    }
+  ]
+}
+{% endschema %}

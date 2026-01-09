@@ -1,0 +1,66 @@
+<section class="py-16 bg-gradient-to-b from-white to-purple-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center space-y-4">
+      <h2 class="text-3xl font-bold gradient-text">{{ section.settings.title }}</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      {% for block in section.blocks %}
+        <div class="rounded-3xl bg-white p-6 shadow-lg">
+          <h3 class="text-xl font-semibold">{{ block.settings.title }}</h3>
+          <p class="text-slate-600 mt-3">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bénéfices",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Pourquoi OnePilates fait la différence"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Un seul produit, mais une expérience complète : design premium, accompagnement, et résultats visibles dès les premières séances."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Bénéfice",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Élégance sculpturale"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte",
+          "default": "Un reformer pensé pour devenir une pièce maîtresse de votre intérieur."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bénéfices",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit", "settings": { "title": "Résistance intelligente", "text": "Système multi-résistance fluide et silencieux pour un entraînement sur-mesure." } },
+        { "type": "benefit", "settings": { "title": "Coaching guidé", "text": "Accès à notre application et à nos masterclass pilates pour un suivi premium." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

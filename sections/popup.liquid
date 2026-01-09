@@ -1,0 +1,59 @@
+<div data-popup class="popup">
+  <div class="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl">
+    <div class="flex items-center justify-between">
+      <h3 class="text-2xl font-bold gradient-text">{{ section.settings.title }}</h3>
+      <button data-popup-close class="text-slate-400">✕</button>
+    </div>
+    <p class="mt-4 text-slate-600">{{ section.settings.description }}</p>
+    {% form 'customer' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="mt-6 grid gap-4">
+        <input
+          type="email"
+          name="contact[email]"
+          placeholder="{{ section.settings.placeholder }}"
+          class="w-full rounded-full border border-purple-200 px-4 py-3"
+          required
+        >
+        <button
+          type="submit"
+          class="rounded-full bg-gradient-to-r from-pink-400 to-purple-500 px-6 py-3 text-white font-semibold"
+        >
+          {{ section.settings.button_label }}
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Popup newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Rejoignez OnePilates"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Recevez nos nouveautés, nos conseils pilates et un bonus exclusif pour votre première commande."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder email",
+      "default": "Votre email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texte bouton",
+      "default": "Je m'inscris"
+    }
+  ]
+}
+{% endschema %}

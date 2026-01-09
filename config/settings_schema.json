@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accent_start",
+        "label": "Dégradé départ",
+        "default": "#f472d0"
+      },
+      {
+        "type": "color",
+        "id": "accent_end",
+        "label": "Dégradé fin",
+        "default": "#8b5cf6"
+      }
+    ]
+  }
+]

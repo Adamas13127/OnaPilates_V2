@@ -1,0 +1,38 @@
+<footer class="bg-white border-t border-purple-100 py-10">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-6">
+    <div>
+      <p class="text-lg font-bold">{{ shop.name }}</p>
+      <p class="text-slate-500 mt-2">{{ section.settings.footer_tagline }}</p>
+    </div>
+    <div class="flex gap-6 text-sm text-slate-500">
+      {% if section.settings.footer_menu != blank %}
+        {% for link in linklists[section.settings.footer_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="/">Accueil</a>
+        <a href="/products/reformer-360">Produit</a>
+        <a href="/pages/contact">Contact</a>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_tagline",
+      "label": "Signature",
+      "default": "Le studio pilates premium à domicile."
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Menu footer"
+    }
+  ]
+}
+{% endschema %}

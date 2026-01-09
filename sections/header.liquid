@@ -1,0 +1,41 @@
+<nav
+  data-nav
+  class="fixed top-4 left-1/2 z-30 -translate-x-1/2 rounded-full border border-purple-100 px-6 py-3 transition-all duration-300"
+>
+  <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold">
+    {% if section.settings.main_menu != blank %}
+      {% for link in linklists[section.settings.main_menu].links %}
+        <a href="{{ link.url }}" class="hover:text-purple-600">{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a href="/" class="hover:text-purple-600">Accueil</a>
+      <a href="/products/reformer-360" class="hover:text-purple-600">Reformer</a>
+      <a href="/checkout" class="hover:text-purple-600">Paiement</a>
+    {% endif %}
+    <button
+      data-popup-open
+      class="rounded-full bg-gradient-to-r from-pink-400 to-purple-500 px-4 py-2 text-white shadow-lg"
+    >
+      {{ section.settings.cta_label }}
+    </button>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menu principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte du bouton newsletter",
+      "default": "Recevoir les news"
+    }
+  ]
+}
+{% endschema %}

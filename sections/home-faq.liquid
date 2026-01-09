@@ -1,0 +1,57 @@
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold gradient-text">{{ section.settings.title }}</h2>
+    <div class="mt-10 grid gap-6 text-left">
+      {% for block in section.blocks %}
+        <div class="rounded-2xl border border-purple-100 p-6">
+          <h3 class="font-semibold">{{ block.settings.question }}</h3>
+          <p class="mt-2 text-slate-600">{{ block.settings.answer }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Questions fréquentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Le reformer convient-il aux débutants ?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Réponse",
+          "default": "Oui, nos vidéos guidées et les niveaux de résistance vous accompagnent pas à pas."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "question" },
+        { "type": "question", "settings": { "question": "Quel espace prévoir chez soi ?", "answer": "Un espace de 2m x 1m suffit pour pratiquer confortablement." } },
+        { "type": "question", "settings": { "question": "Puis-je payer en plusieurs fois ?", "answer": "Oui, jusqu'à 3 fois sans frais sur la page de paiement." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
